@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es" translate="no">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 11</title>
+    <style>
+        .correcto {
+            background-color: green;
+            color: white;
+        }
+        .incorrecto {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simulación de examen</h1>
+    <p>I. Seleccione la respuesta correcta (100 puntos posibles, 20 puntos cada una)</p>
+    
+    <table id="tablaExamen">
+        <tr>
+            <th>PREGUNTAS</th>
+            <th>RESPUESTAS</th>
+        </tr>
+        <tr>
+            <td>
+                <label>1. Lenguaje de programación que se utiliza principalmente para crear y controlar el comportamiento dinámico de las páginas web.</label>
+            </td>
+            <td>
+                <input id="rdA1" type="radio" name="pregunta1" value="JavaScript"> JavaScript
+                <input id="rdB1" type="radio" name="pregunta1" value="Python"> Python
+                <input id="rdC1" type="radio" name="pregunta1" value="CSS"> CSS
+                <input id="rdD1" type="radio" name="pregunta1" value="HTML"> HTML
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>2. Etiqueta que se utiliza para incluir código JavaScript en una página web.</label>
+            </td>
+            <td>
+                <input id="rdA2" type="radio" name="pregunta2" value="meta"> meta
+                <input id="rdB2" type="radio" name="pregunta2" value="link"> link
+                <input id="rdC2" type="radio" name="pregunta2" value="script"> script
+                <input id="rdD2" type="radio" name="pregunta2" value="body"> body
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>3. Bloque de código diseñado para realizar una tarea específica.</label>
+            </td>
+            <td>
+                <input id="rdA3" type="radio" name="pregunta3" value="var"> var
+                <input id="rdB3" type="radio" name="pregunta3" value="function"> function
+                <input id="rdC3" type="radio" name="pregunta3" value="object"> object
+                <input id="rdD3" type="radio" name="pregunta3" value="action"> action
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>4. Atributo de un botón para llamar a la función cuando se activa el evento de clic.</label>
+            </td>
+            <td>
+                <input id="rdA4" type="radio" name="pregunta4" value="event"> event
+                <input id="rdB4" type="radio" name="pregunta4" value="onmousercover"> onmousercover
+                <input id="rdC4" type="radio" name="pregunta4" value="action"> action
+                <input id="rdD4" type="radio" name="pregunta4" value="onclick"> onclick
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>5. Método para convertir una cadena de texto en un número flotante en JavaScript.</label>
+            </td>
+            <td>
+                <input id="rdA5" type="radio" name="pregunta5" value="parseFloat"> parseFloat()
+                <input id="rdB5" type="radio" name="pregunta5" value="toInteger"> toInteger()
+                <input id="rdC5" type="radio" name="pregunta5" value="parseInt"> parseInt()
+                <input id="rdD5" type="radio" name="pregunta5" value="NumberFloat"> NumberFloat()
+            </td>
+        </tr>
+    </table>
+
+    <button onclick="calificarExamen()">Enviar examen</button>
+    <br>
+    <b>Calificación obtenida: <label id="lblCalificacion"></label> /100</b>
+
+    <script>
+        function calificarExamen() {
+            const respuestasCorrectas = {
+                pregunta1: "JavaScript",
+                pregunta2: "script",
+                pregunta3: "function",
+                pregunta4: "onclick",
+                pregunta5: "parseFloat"
+            };
+
+            let puntuacion = 0;
+
+            // Limpiar colores anteriores
+            const todasLasRespuestas = document.querySelectorAll('input[type="radio"]');
+            todasLasRespuestas.forEach(radio => {
+                radio.parentNode.classList.remove('correcto', 'incorrecto');
+            });
+
+            for (const pregunta in respuestasCorrectas) {
+                const radios = document.querySelectorAll(`input[name="${pregunta}"]`);
+                let respuestaSeleccionada = null;
+
+                radios.forEach(radio => {
+                    // Verificar cuál radio fue seleccionado
+                    if (radio.checked) {
+                        respuestaSeleccionada = radio.value;
+                    }
+                    
+                    // Marcar la respuesta correcta
+                    if (radio.value === respuestasCorrectas[pregunta]) {
+                        radio.parentNode.classList.add('correcto');
+                    }
+                });
+
+                // Sumar puntos si la respuesta es correcta
+                if (respuestaSeleccionada === respuestasCorrectas[pregunta]) {
+                    puntuacion += 20;
+                } else if (respuestaSeleccionada) {
+                    // Marcar la respuesta seleccionada como incorrecta
+                    radios.forEach(radio => {
+                        if (radio.checked) {
+                            radio.parentNode.classList.add('incorrecto');
+                        }
+                    });
+                }
+            }
+
+            document.getElementById("lblCalificacion").textContent = puntuacion;
+        }
+    </script>
+</body>
+</html>

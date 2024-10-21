@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es" translate="no">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 5</title>
+</head>
+
+<body>
+    <h1>Conversor de Monedas</h1>
+    <h3>Tasa de conversión</h3>
+    <table border="1">
+        <tr>
+            <th>Moneda</th>
+            <th>USD</th>
+            <th>EUR</th>
+            <th>MXN</th>
+            <th>JPY</th>
+        </tr>
+        <tr>
+            <td>USD</td>
+            <td>1</td>
+            <td>0.80</td>
+            <td>18.00</td>
+            <td>105.00</td>
+        </tr>
+        <tr>
+            <td>EUR</td>
+            <td>1.25</td>
+            <td>1</td>
+            <td>22.00</td>
+            <td>125.00</td>
+        </tr>
+        <tr>
+            <td>MXN</td>
+            <td>0.055</td>
+            <td>0.045</td>
+            <td>1</td>
+            <td>5.40</td>
+        </tr>
+        <tr>
+            <td>JPY</td>
+            <td>0.0095</td>
+            <td>0.0080</td>
+            <td>0.185</td>
+            <td>1</td>
+        </tr>
+    </table>
+
+    <br>
+    <fieldset>
+        <legend>Área de conversión</legend>
+        <label for="ddlMonedaOrigen">Moneda de origen:</label>
+        <select id="ddlMonedaOrigen">
+            <option value="USD">Dólar USD</option>
+            <option value="EUR">Euro EUR</option>
+            <option value="MXN">Peso Mexicano MXN</option>
+            <option value="JPY">Yen Japonés JPY</option>
+        </select>
+
+        <label for="txtMonto">Monto:</label>
+        <input id="txtMonto" type="number" maxlength="10" placeholder="Ingrese monto">
+
+        <label for="ddlMonedaDestino">Moneda de destino:</label>
+        <select id="ddlMonedaDestino">
+            <option value="USD">Dólar USD</option>
+            <option value="EUR">Euro EUR</option>
+            <option value="MXN">Peso Mexicano MXN</option>
+            <option value="JPY">Yen Japonés JPY</option>
+        </select>
+
+        <button onclick="convertir()">Convertir moneda</button>
+        <br>
+        <b><label id="lblResultado"></label></b>
+    </fieldset>
+
+    <script type="text/javascript">
+            const tCambio = {
+                USD: { USD: 1, EUR: 0.80, MXN: 18.00, JPY: 105.00 },
+                EUR: { USD: 1.25, EUR: 1, MXN: 22.00, JPY: 125.00 },
+                MXN: { USD: 0.055, EUR: 0.045, MXN: 1, JPY: 5.40 },
+                JPY: { USD: 0.0095, EUR: 0.0080, MXN: 0.185, JPY: 1 }
+            };
+
+        function convertir() {
+            const MonedaOrigen = document.getElementById("ddlMonedaOrigen").value;
+            const MonedaDestino = document.getElementById("ddlMonedaDestino").value;
+            const Monto = parseFloat(document.getElementById("txtMonto").value);
+
+            
+            const Tasa = tCambio[MonedaOrigen][MonedaDestino];
+            const MontoConvertido = (Monto * Tasa).toFixed(2);
+
+            const ResultadoTexto = `${Monto} ${MonedaOrigen} es igual a ${MontoConvertido} ${MonedaDestino}`;
+            document.getElementById("lblResultado").textContent = ResultadoTexto;
+        }
+                
+    </script>
+</body>
+</html>

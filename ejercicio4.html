@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ejercico 4</title>
+</head>
+<body>
+	<!-- Formulario -->
+	<form>
+		<h1>Determinar tipo de triangulo</h1>
+		<table>
+			<tr>
+				<td><label for="txtLado1">Lado 1:</label></td>
+				<td><input id="txtLado1" type="number" placeholder="Obligatorio" required></td>
+			</tr>
+			<tr>
+				<td><label for="txtLado2">Lado 2:</label></td>
+				<td><input id="txtLado2" type="number" placeholder="Obligatorio" required></td>
+			</tr>
+			<tr>
+				<td><label for="txtLado3">Lado 3:</label></td>
+				<td><input id="txtLado3" type="number" placeholder="Obligatorio" required></td>
+			</tr>
+		</table>
+		<button onclick="determinarTipoTriangulo()">Determinar</button>
+	</form>
+	<!-- Fin Formulario -->
+
+	<!-- Funcion JS -->
+	<script type="text/javascript">
+		function determinarTipoTriangulo() {
+			var lado1 = parseFloat(document.getElementById("txtLado1").value);
+			var lado2 = parseFloat(document.getElementById("txtLado2").value);
+			var lado3 = parseFloat(document.getElementById("txtLado3").value);
+			var tipo;
+
+			if(lado1 === lado2 && lado1 === lado3) {
+				tipo = "Equilatero"
+			
+			}else if(lado1 === lado2 || lado2 === lado3 || lado1 === lado3) {
+				tipo = "Escaleno"
+
+			}else {
+				tipo = "Isoceles"
+			}
+
+			alert("El triangulo es: "+ tipo);
+		}
+	</script>
+	<!-- Fin Funcion JS -->
+
+
+</body>
+</html>

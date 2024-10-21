@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+input[type="number"], button {
+    padding: 10px;
+    font-size: 1em;
+    margin: 10px;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #45a049;
+}
+.result {
+    font-size: 1.5em;
+    margin-top: 20px;
+}

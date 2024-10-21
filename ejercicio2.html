@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es" translate="no">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 2</title>
+    </head>
+    <body>
+        <h1>Cálculo del costo final de un producto</h1>
+        <table>
+            <tr>
+                <td><label for="txtCantidadCompra">Cantidad Compra:</label></td>
+                <td><input id="txtCantidadCompra" type="number" maxlength="10" placeholder="Ingrese cantidad"></td>
+            </tr>
+            <tr>
+                <td><label for="ddlUnidadEntrada">Unidad Entrada:</label></td>
+                <td>
+                    <select id="ddlUnidadEntrada">
+                        <option value="0">Seleccione</option>
+                        <option value="1">Caja</option>
+                        <option value="2">Paquete</option>
+                        <option value="3">Bolsa</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="txtCantidadUnidad">Cantidad por Unidad:</label></td>
+                <td><input id="txtCantidadUnidad" type="number" maxlength="10" placeholder="Ingrese cantidad"></td>
+            </tr>
+            <tr>
+                <td><label for="ddlUnidadSalida">Unidad Salida:</label></td>
+                <td>
+                    <select id="ddlUnidadSalida">
+                        <option value="0">Seleccione</option>
+                        <option value="1">Caja</option>
+                        <option value="2">Paquete</option>
+                        <option value="3">Bolsa</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="txtCostoUnitario">Costo Unitario:</label></td>
+                <td><input id="txtCostoUnitario" type="number" maxlength="10" placeholder="Ingrese costo"></td>
+            </tr>
+            <tr>
+                <td><label for="txtDescuento">Descuento:</label></td>
+                <td><input id="txtDescuento" type="number" maxlength="3" placeholder="ingrese descuento"></td>
+                <td><input id="chkAplicarDescuento" type="checkbox">Aplicar</td>
+            </tr>
+            <tr>
+                <td><label for="txtCostoFinal">Costo Final:</label></td>
+                <td><input id="txtCostoFinal" type="number" maxlength="10" disabled></td>
+            </tr>
+            <tr>
+                <td><button onclick="calcularCF()">Calcular costo final</button></td>
+            </tr>
+            <tr>
+                <td colspan="3"><p>NOTA: Para este caso el CF = ((CC*CU) * Cost) - D% (el descuento es general)</p></td>
+            </tr>
+        </table>
+
+        <script type="text/javascript">
+            function calcularCF() {
+
+                var cc = parseInt(document.getElementById("txtCantidadCompra").value);
+                var cu = parseInt(document.getElementById("txtCantidadUnidad").value);
+                var costo = parseFloat(document.getElementById("txtCostoUnitario").value);
+                var descuento = parseInt(document.getElementById("txtDescuento").value);
+                var aplicar = document.getElementById("chkAplicarDescuento").checked;
+
+                let costoFinal = ((cc * cu) * costo);
+
+                if (aplicar) {
+                    costoFinal *= (descuento / 100);
+                }
+
+                document.getElementById("txtCostoFinal").value = costoFinal.toFixed(2);
+
+
+            }
+        </script>
+    </body>
+</html>

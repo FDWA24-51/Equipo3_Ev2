@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 12 - Validación</title>
+</head>
+<body>
+    <h1>Validación de formulario</h1>
+    <table>
+        <tr>
+            <td><label for="txtNombre">Nombre</label></td>
+            <td><input id="txtNombre" type="text" maxlength="30" placeholder="Obligatorio"></td>
+            <td><label for="txtPrimerApellido">Primer Apellido</label></td>
+            <td><input id="txtPrimerApellido" type="text" maxlength="30" placeholder="Obligatorio"></td>
+            <td><label for="txtSegundoApellido">Segundo Apellido</label></td>
+            <td><input id="txtSegundoApellido" type="text" maxlength="30" placeholder="Opcional"></td>
+        </tr>
+        <tr>
+            <td><label for="txtCorreo">Correo</label></td>
+            <td><input id="txtCorreo" type="email" maxlength="80" placeholder="Obligatorio"></td>
+            <td><label for="txtTelefono">Teléfono</label></td>
+            <td><input id="txtTelefono" type="tel" maxlength="20" placeholder="Obligatorio"></td>
+            <td><label for="txtTipoTelefono">Tipo Teléfono</label></td>
+            <td>
+                <input id="txtTipoTelefono" type="text" placeholder="Opcional">
+            </td>
+            <td><label for="txtExtension">Extensión</label></td>
+            <td><input id="txtExtension" type="number" maxlength="4" placeholder="Opcional"></td>
+        </tr>
+        <tr>
+            <td><label for="txtSueldo">Sueldo</label></td>
+            <td><input id="txtSueldo" type="number" maxlength="5" placeholder="Obligatorio"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="checkbox" id="chkPoliticaPrivacidad"> <label for="chkPoliticaPrivacidad">Aceptar política de privacidad</label></td>
+        </tr>
+    </table>
+    <button type="button" onclick="validarFormulario()">Validar</button>
+    <p id="resultado"></p>
+
+    <script>
+        function validarFormulario() {
+            /* Obtener valores */
+            let nombre = document.getElementById("txtNombre").value;
+            let primerApellido = document.getElementById("txtPrimerApellido").value;
+            let correo = document.getElementById("txtCorreo").value;
+            let telefono = document.getElementById("txtTelefono").value;
+            let sueldo = document.getElementById("txtSueldo").value;
+            let politicaPrivacidad = document.getElementById("chkPoliticaPrivacidad").checked;
+
+            let regexNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+            let regexCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            let regexTelefono = /^[0-9]{10}$/;
+            let regexSueldo = /^[0-9]+$/;
+
+            let mensaje = '';
+
+            /* Validar cada campo */
+            if (!regexNombre.test(nombre)) {
+                mensaje = "El nombre es inválido.";
+            } else if (!regexNombre.test(primerApellido)) {
+                mensaje = "El primer apellido es inválido.";
+            } else if (!regexCorreo.test(correo)) {
+                mensaje = "El correo electrónico es inválido.";
+            } else if (!regexTelefono.test(telefono)) {
+                mensaje = "El teléfono debe tener 10 dígitos.";
+            } else if (!regexSueldo.test(sueldo) || sueldo <= 0) {
+                mensaje = "El sueldo es inválido. Debe ser un número positivo.";
+            } else if (!politicaPrivacidad) {
+                mensaje = "Debes aceptar la política de privacidad.";
+            } else {
+                mensaje = "Formulario válido. ¡Enviado con éxito!";
+            }
+
+            /* Mostrar resultado */
+            document.getElementById("resultado").textContent = mensaje;
+        }
+    </script>
+</body>
+</html>

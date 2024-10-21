@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" translate="no">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 9</title>
+</head>
+
+<body>
+    <h1>Conversión de decimal a binario</h1>
+    <table>
+        <tr>
+            <td><label for="txtDecimal">Número en decimal:</label></td>
+            <td><input id="txtDecimal" type="number" maxlength="10" placeholder="Ingrese número"></td>
+        </tr>
+        <tr>
+            <td><label for="txtBinario">Número en binario:</label></td>
+            <td><input id="txtBinario" type="number" maxlength="10" placeholder="Resultado binario" disabled></td>
+        </tr>
+    </table>
+    <button type="button" onclick="convertirABinario()">Convertir a binario</button>
+
+    <script>
+        function convertirABinario() {
+            /* Obtener valor del número decimal */
+            let numeroDecimal = parseInt(document.getElementById('txtDecimal').value);
+
+            if (isNaN(numeroDecimal)) {
+                alert("Por favor, ingresa un número válido.");
+                return;
+            }
+
+            let numeroBinario = numeroDecimal.toString(2);
+            document.getElementById('txtBinario').value = numeroBinario;
+        }
+    </script>
+</body>
+</html>

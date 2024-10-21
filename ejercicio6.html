@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ejercicio 6</title>
+</head>
+<body>
+	<!-- Formulario -->
+	<form>
+		<h1>Calcular Calificaciones Finales</h1>
+		<p>Ingrese el valor de cada rubro en formato entero (0 a 100)</p>
+		<table>
+			<tr>
+				<td><label for="txtExamParcial">Examen Parcial	(30%)</label></td>
+				<td><input id="txtExamParcial" type="number" required></td>
+			</tr>
+			<tr>
+				<td><label for="txtExamFinal">Examen Final	(30%)</label></td>
+				<td><input id="txtExamFinal" type="number" required></td>
+			</tr>
+			<tr>
+				<td><label for="txtPortafolio">Portafolio	(20%)</label></td>
+				<td><input id="txtPortafolio" type="number" required></td>
+			</tr>
+			<tr>
+				<td><label for="txtPIA">PIA	(20%)</label></td>
+				<td><input id="txtPIA" type="number" required></td>
+			</tr>
+		</table>
+
+		<button onclick="calificacion()">Obtener Calificacion</button>
+	</form>
+	<!-- Fin Formulario -->
+
+	<!-- Funcion JS -->
+	<script type="text/javascript">
+		function calificacion() {
+			var ExamParcial = parseFloat(document.getElementById("txtExamParcial").value);
+			var ExamFinal = parseFloat(document.getElementById("txtExamFinal").value);
+			var Portafolio = parseFloat(document.getElementById("txtPortafolio").value);
+			var PIA = parseFloat(document.getElementById("txtPIA").value);
+			var calf;
+
+			calf = ((ExamParcial * 0.30) + (ExamFinal * 0.30) + (Portafolio * 0.20) + (PIA * 0.20));
+
+			if  (ExamParcial > 100 || ExamParcial < 0) {
+				alert("Ingrese un numero valido")
+
+			}else if (ExamFinal > 100 || ExamFinal < 0) {
+				alert("Ingrese un numero valido")
+
+			} else if (Portafolio > 100 || Portafolio < 0) {
+				alert("Ingrese un numero valido")
+
+			}else if (PIA > 100 || PIA < 0) {
+				alert("Ingrese un numero valido")
+
+			}else if (calf >= 70) {
+				alert("Aprobado, tu calificacion es: "+ calf);
+
+			}else if (calf > 50 && calf < 69) {
+				alert("Reprobado, tu calificacion es: "+ calf +", 2da Op");
+
+			}else if (calf <= 50) {
+				alert("Reprobado, tu calificacion es: "+ calf +", 3ra Op");
+			}
+		}
+	</script>
+
+</body>
+</html>
